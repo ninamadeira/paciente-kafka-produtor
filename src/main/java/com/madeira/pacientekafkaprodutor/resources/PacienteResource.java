@@ -1,10 +1,9 @@
 package com.madeira.pacientekafkaprodutor.resources;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +20,8 @@ public class PacienteResource {
 
     private static final String TOPIC = "Kafka_Example_json";
 
-    @GetMapping
-    public String send(@Valid @RequestBody final PacienteDTO dto) {
+    @PostMapping
+    public String send(@RequestBody final PacienteDTO dto) {
 
         kafkaTemplate.send(TOPIC, dto);
 
